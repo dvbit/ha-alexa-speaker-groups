@@ -117,3 +117,22 @@ async def test_new_speaker_ignore(hass: HomeAssistant, alexa, setup) -> None:
     await hass.async_block_till_done()
     assert "S5" not in setup.options[CONF_SPEAKERS]
     assert "S5" in setup.options[CONF_KNOWN_SPEAKERS]
+
+
+async def test_foreign_device_with_3_element_identifier(
+    hass: HomeAssistant, alexa
+) -> None:
+    """Regression 1.1.0: devices of other integrations may have 3-tuple identifiers."""
+    from pytest_homeassistant_custom_component.common import MockConfigEntry
+
+    from homeassistant.helpers import device_registry as dr
+
+    other = MockConfigEntry(domain="other")
+    other.add_to_hass(hass)
+    dr.async_get(hass).async_get_or_create(
+        config_entry_id=other.entry_id, identifiers={("other", "a", "b")}, name="X"
+    )
+    result = await hass.config_entries.flow.async_init(
+        DOMAIN, context={"source": config_entries.SOURCE_USER}
+    )
+    assert result["type"] is FlowResultType.FORM

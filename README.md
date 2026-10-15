@@ -1,7 +1,7 @@
 # Alexa Speaker Groups
 
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
-![Version](https://img.shields.io/badge/version-1.0.0-blue)
+![Version](https://img.shields.io/badge/version-1.1.0-blue)
 ![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2026.10%2B-03a9f4)
 
 🇮🇹 [Leggi in italiano](README.it.md)

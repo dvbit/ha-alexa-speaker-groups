@@ -1,4 +1,4 @@
-# Alexa Speaker Groups v1.0.0 — Specification
+# Alexa Speaker Groups v1.1.0 — Specification
 
 Original consolidated requirement agreed before implementation. Section numbers
 (§) are referenced from the code comments. Clarifications added during

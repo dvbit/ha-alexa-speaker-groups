@@ -97,8 +97,12 @@ def discover_devices(
     """
     devices: dict[str, AlexaDevice] = {}
     for device in dr.async_get(hass).devices:
-        for domain, serial in device.identifiers:
-            if domain != ALEXA_DOMAIN or media_player_of(hass, serial) is None:
+        for identifier in device.identifiers:
+            # Identifiers of other integrations may have more than 2 elements.
+            if len(identifier) < 2 or identifier[0] != ALEXA_DOMAIN:
+                continue
+            serial = identifier[1]
+            if media_player_of(hass, serial) is None:
                 continue
             devices[serial] = AlexaDevice(
                 serial=serial,
