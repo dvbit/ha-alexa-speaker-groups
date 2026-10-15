@@ -1,0 +1,119 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Alexa Speaker Groups",
+        "description": "Choisissez les enceintes Echo qui auront un lecteur jumeau groupable et le comportement du volume de groupe.",
+        "data": {
+          "speakers": "Enceintes",
+          "volume_mode": "Mode de volume de groupe"
+        },
+        "data_description": {
+          "speakers": "Chaque enceinte choisie obtient un lecteur jumeau et des entités notify Parler/Annonce.",
+          "volume_mode": "Comment le volume du maître est appliqué aux membres du groupe."
+        }
+      }
+    },
+    "error": {
+      "no_speakers_selected": "Sélectionnez au moins une enceinte."
+    },
+    "abort": {
+      "alexa_not_loaded": "L'intégration Alexa Devices doit d'abord être configurée et chargée.",
+      "no_speakers": "Aucune enceinte Alexa avec lecteur multimédia trouvée.",
+      "single_instance_allowed": "Une seule configuration est autorisée."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Options Alexa Speaker Groups",
+        "menu_options": {
+          "settings": "Enceintes et volume",
+          "manual": "Association manuelle des groupes Alexa"
+        }
+      },
+      "settings": {
+        "title": "Enceintes et volume",
+        "data": {
+          "speakers": "Enceintes",
+          "volume_mode": "Mode de volume de groupe"
+        },
+        "data_description": {
+          "speakers": "Chaque enceinte choisie obtient un lecteur jumeau et des entités notify Parler/Annonce.",
+          "volume_mode": "Comment le volume du maître est appliqué aux membres du groupe."
+        }
+      },
+      "manual": {
+        "title": "Association manuelle des groupes",
+        "description": "Choisissez un groupe Alexa dont vous voulez définir les membres à la main. À utiliser seulement si la détection automatique échoue.",
+        "data": {
+          "group": "Groupe Alexa"
+        }
+      },
+      "manual_members": {
+        "title": "Membres de {group}",
+        "description": "Sélectionnez les enceintes de ce groupe Alexa. Laissez vide pour revenir à la détection automatique.",
+        "data": {
+          "members": "Membres"
+        }
+      }
+    },
+    "error": {
+      "no_speakers_selected": "Sélectionnez au moins une enceinte."
+    },
+    "abort": {
+      "no_groups": "Aucun groupe d'enceintes Alexa trouvé. Créez-en un dans l'application Alexa."
+    }
+  },
+  "selector": {
+    "volume_mode": {
+      "options": {
+        "same": "Même volume sur chaque membre",
+        "proportional": "Proportionnel (garde les niveaux relatifs)"
+      }
+    },
+    "action": {
+      "options": {
+        "add": "Ajouter l'enceinte",
+        "ignore": "Ignorer"
+      }
+    }
+  },
+  "issues": {
+    "membership_unavailable": {
+      "title": "Membres des groupes Alexa illisibles",
+      "description": "Alexa Speaker Groups ne peut pas lire quelles enceintes appartiennent à chaque groupe Alexa (l'intégration Alexa Devices a peut-être changé). La lecture synchronisée est désactivée jusqu'à ce qu'elle redevienne lisible. Vous pouvez associer les groupes à la main dans les options de l'intégration (Association manuelle des groupes Alexa)."
+    },
+    "new_speaker": {
+      "title": "Nouvelle enceinte Alexa trouvée : {name}",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "Nouvelle enceinte {name}",
+            "description": "Ajouter {name} à Alexa Speaker Groups ou l'ignorer.",
+            "data": {
+              "action": "Action"
+            }
+          }
+        },
+        "abort": {
+          "entry_not_found": "L'entrée de configuration n'existe plus."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_speaker": {
+      "message": "Ces enceintes ne sont pas gérées par Alexa Speaker Groups : {speakers}"
+    },
+    "not_a_twin": {
+      "message": "{entity_id} n'est pas un lecteur Alexa Speaker Groups ; seuls ses lecteurs de groupe peuvent être joints."
+    },
+    "announce_needs_text": {
+      "message": "Les annonces Alexa nécessitent du texte comme media content ID, pas une URL."
+    },
+    "no_target": {
+      "message": "Aucune entité Alexa Devices disponible pour cette commande."
+    }
+  }
+}

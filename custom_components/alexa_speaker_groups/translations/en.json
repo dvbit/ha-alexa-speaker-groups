@@ -1,0 +1,119 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Alexa Speaker Groups",
+        "description": "Choose the Echo speakers that get a groupable twin player and how the group volume behaves.",
+        "data": {
+          "speakers": "Speakers",
+          "volume_mode": "Group volume mode"
+        },
+        "data_description": {
+          "speakers": "Each selected speaker gets a twin media player and Speak/Announce notify entities.",
+          "volume_mode": "How the leader's volume is applied to the group members."
+        }
+      }
+    },
+    "error": {
+      "no_speakers_selected": "Select at least one speaker."
+    },
+    "abort": {
+      "alexa_not_loaded": "The Alexa Devices integration must be set up and loaded first.",
+      "no_speakers": "No Alexa speaker with a media player was found.",
+      "single_instance_allowed": "Only one configuration is allowed."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Alexa Speaker Groups options",
+        "menu_options": {
+          "settings": "Speakers and volume",
+          "manual": "Manual Alexa group mapping"
+        }
+      },
+      "settings": {
+        "title": "Speakers and volume",
+        "data": {
+          "speakers": "Speakers",
+          "volume_mode": "Group volume mode"
+        },
+        "data_description": {
+          "speakers": "Each selected speaker gets a twin media player and Speak/Announce notify entities.",
+          "volume_mode": "How the leader's volume is applied to the group members."
+        }
+      },
+      "manual": {
+        "title": "Manual group mapping",
+        "description": "Pick an Alexa group whose members you want to set by hand. Use this only if automatic detection fails.",
+        "data": {
+          "group": "Alexa group"
+        }
+      },
+      "manual_members": {
+        "title": "Members of {group}",
+        "description": "Select the speakers of this Alexa group. Leave empty to go back to automatic detection.",
+        "data": {
+          "members": "Members"
+        }
+      }
+    },
+    "error": {
+      "no_speakers_selected": "Select at least one speaker."
+    },
+    "abort": {
+      "no_groups": "No Alexa speaker group was found. Create one in the Alexa app."
+    }
+  },
+  "selector": {
+    "volume_mode": {
+      "options": {
+        "same": "Same volume on every member",
+        "proportional": "Proportional (keep relative levels)"
+      }
+    },
+    "action": {
+      "options": {
+        "add": "Add the speaker",
+        "ignore": "Ignore it"
+      }
+    }
+  },
+  "issues": {
+    "membership_unavailable": {
+      "title": "Alexa group membership not readable",
+      "description": "Alexa Speaker Groups cannot read which speakers belong to each Alexa group (the Alexa Devices integration may have changed). Synchronized playback is disabled until it can be read again. You can map groups by hand in the integration options (Manual Alexa group mapping)."
+    },
+    "new_speaker": {
+      "title": "New Alexa speaker found: {name}",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "New speaker {name}",
+            "description": "Add {name} to Alexa Speaker Groups or ignore it.",
+            "data": {
+              "action": "Action"
+            }
+          }
+        },
+        "abort": {
+          "entry_not_found": "The configuration entry no longer exists."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_speaker": {
+      "message": "These speakers are not managed by Alexa Speaker Groups: {speakers}"
+    },
+    "not_a_twin": {
+      "message": "{entity_id} is not an Alexa Speaker Groups player; only its group players can be joined."
+    },
+    "announce_needs_text": {
+      "message": "Announcements on Alexa need text as media content ID, not a URL."
+    },
+    "no_target": {
+      "message": "No Alexa Devices entity is available for this command."
+    }
+  }
+}

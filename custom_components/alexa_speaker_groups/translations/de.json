@@ -1,0 +1,119 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Alexa Speaker Groups",
+        "description": "Wähle die Echo-Lautsprecher, die einen gruppierbaren Zwillings-Player erhalten, und wie sich die Gruppenlautstärke verhält.",
+        "data": {
+          "speakers": "Lautsprecher",
+          "volume_mode": "Modus der Gruppenlautstärke"
+        },
+        "data_description": {
+          "speakers": "Jeder gewählte Lautsprecher erhält einen Zwillings-Mediaplayer und Notify-Entitäten Sprechen/Ankündigung.",
+          "volume_mode": "Wie die Lautstärke des Leiters auf die Gruppenmitglieder angewendet wird."
+        }
+      }
+    },
+    "error": {
+      "no_speakers_selected": "Wähle mindestens einen Lautsprecher."
+    },
+    "abort": {
+      "alexa_not_loaded": "Die Integration Alexa Devices muss zuerst eingerichtet und geladen sein.",
+      "no_speakers": "Kein Alexa-Lautsprecher mit Mediaplayer gefunden.",
+      "single_instance_allowed": "Es ist nur eine Konfiguration erlaubt."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Optionen von Alexa Speaker Groups",
+        "menu_options": {
+          "settings": "Lautsprecher und Lautstärke",
+          "manual": "Manuelle Zuordnung der Alexa-Gruppen"
+        }
+      },
+      "settings": {
+        "title": "Lautsprecher und Lautstärke",
+        "data": {
+          "speakers": "Lautsprecher",
+          "volume_mode": "Modus der Gruppenlautstärke"
+        },
+        "data_description": {
+          "speakers": "Jeder gewählte Lautsprecher erhält einen Zwillings-Mediaplayer und Notify-Entitäten Sprechen/Ankündigung.",
+          "volume_mode": "Wie die Lautstärke des Leiters auf die Gruppenmitglieder angewendet wird."
+        }
+      },
+      "manual": {
+        "title": "Manuelle Gruppenzuordnung",
+        "description": "Wähle eine Alexa-Gruppe, deren Mitglieder du von Hand festlegen willst. Nur verwenden, wenn die automatische Erkennung fehlschlägt.",
+        "data": {
+          "group": "Alexa-Gruppe"
+        }
+      },
+      "manual_members": {
+        "title": "Mitglieder von {group}",
+        "description": "Wähle die Lautsprecher dieser Alexa-Gruppe. Leer lassen, um zur automatischen Erkennung zurückzukehren.",
+        "data": {
+          "members": "Mitglieder"
+        }
+      }
+    },
+    "error": {
+      "no_speakers_selected": "Wähle mindestens einen Lautsprecher."
+    },
+    "abort": {
+      "no_groups": "Keine Alexa-Lautsprechergruppe gefunden. Erstelle eine in der Alexa-App."
+    }
+  },
+  "selector": {
+    "volume_mode": {
+      "options": {
+        "same": "Gleiche Lautstärke für alle Mitglieder",
+        "proportional": "Proportional (relative Pegel beibehalten)"
+      }
+    },
+    "action": {
+      "options": {
+        "add": "Lautsprecher hinzufügen",
+        "ignore": "Ignorieren"
+      }
+    }
+  },
+  "issues": {
+    "membership_unavailable": {
+      "title": "Mitglieder der Alexa-Gruppen nicht lesbar",
+      "description": "Alexa Speaker Groups kann nicht lesen, welche Lautsprecher zu jeder Alexa-Gruppe gehören (die Integration Alexa Devices hat sich möglicherweise geändert). Synchrone Wiedergabe ist deaktiviert, bis sie wieder lesbar ist. Du kannst die Gruppen in den Optionen der Integration von Hand zuordnen (Manuelle Zuordnung der Alexa-Gruppen)."
+    },
+    "new_speaker": {
+      "title": "Neuer Alexa-Lautsprecher gefunden: {name}",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "Neuer Lautsprecher {name}",
+            "description": "{name} zu Alexa Speaker Groups hinzufügen oder ignorieren.",
+            "data": {
+              "action": "Aktion"
+            }
+          }
+        },
+        "abort": {
+          "entry_not_found": "Der Konfigurationseintrag existiert nicht mehr."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_speaker": {
+      "message": "Diese Lautsprecher werden nicht von Alexa Speaker Groups verwaltet: {speakers}"
+    },
+    "not_a_twin": {
+      "message": "{entity_id} ist kein Player von Alexa Speaker Groups; nur dessen Gruppen-Player können verbunden werden."
+    },
+    "announce_needs_text": {
+      "message": "Ankündigungen auf Alexa benötigen Text als Media Content ID, keine URL."
+    },
+    "no_target": {
+      "message": "Für diesen Befehl ist keine Alexa-Devices-Entität verfügbar."
+    }
+  }
+}

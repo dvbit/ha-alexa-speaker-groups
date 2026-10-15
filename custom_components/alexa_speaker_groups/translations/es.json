@@ -1,0 +1,119 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Alexa Speaker Groups",
+        "description": "Elige los altavoces Echo que tendrán un reproductor gemelo agrupable y cómo se comporta el volumen del grupo.",
+        "data": {
+          "speakers": "Altavoces",
+          "volume_mode": "Modo de volumen de grupo"
+        },
+        "data_description": {
+          "speakers": "Cada altavoz elegido obtiene un reproductor gemelo y entidades notify Hablar/Anuncio.",
+          "volume_mode": "Cómo se aplica el volumen del líder a los miembros del grupo."
+        }
+      }
+    },
+    "error": {
+      "no_speakers_selected": "Selecciona al menos un altavoz."
+    },
+    "abort": {
+      "alexa_not_loaded": "La integración Alexa Devices debe estar configurada y cargada primero.",
+      "no_speakers": "No se encontró ningún altavoz Alexa con reproductor multimedia.",
+      "single_instance_allowed": "Solo se permite una configuración."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opciones de Alexa Speaker Groups",
+        "menu_options": {
+          "settings": "Altavoces y volumen",
+          "manual": "Asignación manual de grupos Alexa"
+        }
+      },
+      "settings": {
+        "title": "Altavoces y volumen",
+        "data": {
+          "speakers": "Altavoces",
+          "volume_mode": "Modo de volumen de grupo"
+        },
+        "data_description": {
+          "speakers": "Cada altavoz elegido obtiene un reproductor gemelo y entidades notify Hablar/Anuncio.",
+          "volume_mode": "Cómo se aplica el volumen del líder a los miembros del grupo."
+        }
+      },
+      "manual": {
+        "title": "Asignación manual de grupos",
+        "description": "Elige un grupo Alexa cuyos miembros quieras definir a mano. Úsalo solo si la detección automática falla.",
+        "data": {
+          "group": "Grupo Alexa"
+        }
+      },
+      "manual_members": {
+        "title": "Miembros de {group}",
+        "description": "Selecciona los altavoces de este grupo Alexa. Déjalo vacío para volver a la detección automática.",
+        "data": {
+          "members": "Miembros"
+        }
+      }
+    },
+    "error": {
+      "no_speakers_selected": "Selecciona al menos un altavoz."
+    },
+    "abort": {
+      "no_groups": "No se encontró ningún grupo de altavoces Alexa. Crea uno en la app Alexa."
+    }
+  },
+  "selector": {
+    "volume_mode": {
+      "options": {
+        "same": "Mismo volumen en todos los miembros",
+        "proportional": "Proporcional (mantiene los niveles relativos)"
+      }
+    },
+    "action": {
+      "options": {
+        "add": "Añadir el altavoz",
+        "ignore": "Ignorar"
+      }
+    }
+  },
+  "issues": {
+    "membership_unavailable": {
+      "title": "Miembros de los grupos Alexa no legibles",
+      "description": "Alexa Speaker Groups no puede leer qué altavoces pertenecen a cada grupo Alexa (la integración Alexa Devices puede haber cambiado). La reproducción sincronizada está desactivada hasta que vuelva a ser legible. Puedes asignar los grupos a mano en las opciones de la integración (Asignación manual de grupos Alexa)."
+    },
+    "new_speaker": {
+      "title": "Nuevo altavoz Alexa encontrado: {name}",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "Nuevo altavoz {name}",
+            "description": "Añade {name} a Alexa Speaker Groups o ignóralo.",
+            "data": {
+              "action": "Acción"
+            }
+          }
+        },
+        "abort": {
+          "entry_not_found": "La entrada de configuración ya no existe."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_speaker": {
+      "message": "Estos altavoces no están gestionados por Alexa Speaker Groups: {speakers}"
+    },
+    "not_a_twin": {
+      "message": "{entity_id} no es un reproductor de Alexa Speaker Groups; solo se pueden unir sus reproductores de grupo."
+    },
+    "announce_needs_text": {
+      "message": "Los anuncios en Alexa necesitan texto como media content ID, no una URL."
+    },
+    "no_target": {
+      "message": "No hay ninguna entidad de Alexa Devices disponible para este comando."
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "domain": "alexa_speaker_groups",
+  "name": "Alexa Speaker Groups",
+  "codeowners": ["@dvbit"],
+  "config_flow": true,
+  "dependencies": ["alexa_devices", "repairs"],
+  "documentation": "https://github.com/dvbit/ha-alexa-speaker-groups",
+  "integration_type": "service",
+  "iot_class": "calculated",
+  "issue_tracker": "https://github.com/dvbit/ha-alexa-speaker-groups/issues",
+  "requirements": [],
+  "single_config_entry": true,
+  "version": "1.0.0"
+}

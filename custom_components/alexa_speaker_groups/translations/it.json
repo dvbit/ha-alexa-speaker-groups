@@ -1,0 +1,119 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Alexa Speaker Groups",
+        "description": "Scegli gli Echo che avranno un player gemello raggruppabile e come si comporta il volume del gruppo.",
+        "data": {
+          "speakers": "Speaker",
+          "volume_mode": "Modalità volume di gruppo"
+        },
+        "data_description": {
+          "speakers": "Ogni speaker scelto ottiene un media player gemello e le entità notify Parla/Annuncio.",
+          "volume_mode": "Come il volume del leader viene applicato ai membri del gruppo."
+        }
+      }
+    },
+    "error": {
+      "no_speakers_selected": "Seleziona almeno uno speaker."
+    },
+    "abort": {
+      "alexa_not_loaded": "L'integrazione Alexa Devices deve essere configurata e caricata prima.",
+      "no_speakers": "Nessuno speaker Alexa con media player trovato.",
+      "single_instance_allowed": "È consentita una sola configurazione."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Opzioni Alexa Speaker Groups",
+        "menu_options": {
+          "settings": "Speaker e volume",
+          "manual": "Mappatura manuale gruppi Alexa"
+        }
+      },
+      "settings": {
+        "title": "Speaker e volume",
+        "data": {
+          "speakers": "Speaker",
+          "volume_mode": "Modalità volume di gruppo"
+        },
+        "data_description": {
+          "speakers": "Ogni speaker scelto ottiene un media player gemello e le entità notify Parla/Annuncio.",
+          "volume_mode": "Come il volume del leader viene applicato ai membri del gruppo."
+        }
+      },
+      "manual": {
+        "title": "Mappatura manuale gruppi",
+        "description": "Scegli un gruppo Alexa di cui impostare i membri a mano. Usalo solo se il rilevamento automatico non funziona.",
+        "data": {
+          "group": "Gruppo Alexa"
+        }
+      },
+      "manual_members": {
+        "title": "Membri di {group}",
+        "description": "Seleziona gli speaker di questo gruppo Alexa. Lascia vuoto per tornare al rilevamento automatico.",
+        "data": {
+          "members": "Membri"
+        }
+      }
+    },
+    "error": {
+      "no_speakers_selected": "Seleziona almeno uno speaker."
+    },
+    "abort": {
+      "no_groups": "Nessun gruppo di speaker Alexa trovato. Creane uno nell'app Alexa."
+    }
+  },
+  "selector": {
+    "volume_mode": {
+      "options": {
+        "same": "Stesso volume su tutti i membri",
+        "proportional": "Proporzionale (mantiene i livelli relativi)"
+      }
+    },
+    "action": {
+      "options": {
+        "add": "Aggiungi lo speaker",
+        "ignore": "Ignora"
+      }
+    }
+  },
+  "issues": {
+    "membership_unavailable": {
+      "title": "Membri dei gruppi Alexa non leggibili",
+      "description": "Alexa Speaker Groups non riesce a leggere quali speaker appartengono a ogni gruppo Alexa (l'integrazione Alexa Devices potrebbe essere cambiata). La riproduzione sincronizzata è disattivata finché non torna leggibile. Puoi mappare i gruppi a mano nelle opzioni dell'integrazione (Mappatura manuale gruppi Alexa)."
+    },
+    "new_speaker": {
+      "title": "Nuovo speaker Alexa trovato: {name}",
+      "fix_flow": {
+        "step": {
+          "confirm": {
+            "title": "Nuovo speaker {name}",
+            "description": "Aggiungi {name} ad Alexa Speaker Groups oppure ignoralo.",
+            "data": {
+              "action": "Azione"
+            }
+          }
+        },
+        "abort": {
+          "entry_not_found": "La configurazione non esiste più."
+        }
+      }
+    }
+  },
+  "exceptions": {
+    "unknown_speaker": {
+      "message": "Questi speaker non sono gestiti da Alexa Speaker Groups: {speakers}"
+    },
+    "not_a_twin": {
+      "message": "{entity_id} non è un player di Alexa Speaker Groups; si possono unire solo i suoi player di gruppo."
+    },
+    "announce_needs_text": {
+      "message": "Gli annunci su Alexa richiedono un testo come media content ID, non un URL."
+    },
+    "no_target": {
+      "message": "Nessuna entità Alexa Devices disponibile per questo comando."
+    }
+  }
+}

@@ -1,0 +1,4 @@
+homeassistant==2026.10.1
+aioamazondevices==16.3.2
+pytest-homeassistant-custom-component
+ruff
