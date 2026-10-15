@@ -1,7 +1,7 @@
 # Alexa Speaker Groups
 
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
-![Versione](https://img.shields.io/badge/versione-1.1.0-blue)
+![Versione](https://img.shields.io/badge/versione-1.2.0-blue)
 ![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2026.10%2B-03a9f4)
 
 🇬🇧 [Read in English](README.md)
@@ -51,6 +51,10 @@ Per ogni Echo scelto (es. *Alexa Cucina*):
 | `media_player.alexa_cucina_group` | player gemello raggruppabile |
 | `notify.alexa_cucina_group_speak` | parla sul gruppo corrente |
 | `notify.alexa_cucina_group_announce` | annuncio (suono + testo) sul gruppo corrente |
+
+> ℹ️ Home Assistant antepone l'area agli id delle entità, quindi in un'installazione
+> reale gli id sono tipo `media_player.cucina_alexa_cucina_group`. Gli esempi usano id
+> brevi; cerca `_group` in *Strumenti per sviluppatori → Stati* per trovare i tuoi.
 
 Attributi extra del player gemello: `synchronized` (true/false) e `alexa_group`
 (l'entità del gruppo Alexa in uso, se presente).
@@ -146,6 +150,8 @@ entity: media_player.alexa_cucina_group
   Alexa non hanno *Parla*.
 - Gli annunci richiedono **testo**: URL e id `media-source://` vengono rifiutati.
 - Play/Pausa/Successivo/Precedente compaiono solo quando Alexa li segnala disponibili.
+- Uno speaker che diventa **non disponibile** viene tolto automaticamente dal suo gruppo
+  (Home Assistant non può eseguire unjoin su entità non disponibili).
 
 ## Opzioni
 *Impostazioni → Dispositivi e servizi → Alexa Speaker Groups → Configura*:

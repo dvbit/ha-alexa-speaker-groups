@@ -1,4 +1,4 @@
-# Alexa Speaker Groups v1.1.0 — Specification
+# Alexa Speaker Groups v1.2.0 — Specification
 
 Original consolidated requirement agreed before implementation. Section numbers
 (§) are referenced from the code comments. Clarifications added during
@@ -69,6 +69,10 @@ never tries to.
   the leader's speaker (5.2). **[impl]** Play/Pause/Next/Previous are offered only when
   the entity in use offers them (alexa_devices enables them dynamically). Playback
   commands sent to any member of a group act on the whole group.
+
+- 5.6 **[impl 1.2.0]** A member whose Alexa `media_player` is unavailable is removed
+  from its group (WARNING log): HA skips entity services for unavailable entities, so
+  it could otherwise never leave and would block the exact match of §5.1.
 
 ## 6. Logging
 - DEBUG: membership read (on change), routing decisions, commands sent.

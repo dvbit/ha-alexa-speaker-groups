@@ -140,7 +140,27 @@ class GroupManager:
     @callback
     def _async_alexa_state_changed(self, event: Event[EventStateChangedData]) -> None:
         """Mirror alexa_devices state changes on the twins (§5.5)."""
+        self._prune_unavailable()
         self._notify_listeners()
+
+    @callback
+    def _prune_unavailable(self) -> None:
+        """Drop unavailable speakers from their groups (§4.1, §5.1).
+
+        HA skips entity services (join/unjoin) for unavailable entities, so an
+        unavailable twin could never leave a group and would block an exact
+        match with an Alexa group.
+        """
+        for group in list(self._groups.values()):
+            for serial in group:
+                own = media_player_of(self.hass, serial)
+                if own is None or self.state_of(own) is not None:
+                    continue
+                LOGGER.warning(
+                    "Speaker %s is unavailable: removed from its group", serial
+                )
+                self._detach(serial)
+                self._changed()
 
     @callback
     def async_add_listener(self, update: CALLBACK_TYPE) -> Callable[[], None]:
@@ -161,6 +181,7 @@ class GroupManager:
         regardless of the order in which twins are added.
         """
         self._twins[serial] = entity_id
+        self._prune_unavailable()
         self._notify_listeners()
 
     @callback
@@ -271,6 +292,7 @@ class GroupManager:
                 translation_key="unknown_speaker",
                 translation_placeholders={"speakers": ", ".join(unknown)},
             )
+        self._prune_unavailable()
         # Keep the existing group when the leader already leads one.
         group = list(self._groups.get(leader, [])) or [leader]
         if not self.is_leader(leader):

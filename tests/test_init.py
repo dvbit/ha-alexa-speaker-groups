@@ -81,6 +81,20 @@ async def test_non_matching_group_fans_out(hass, alexa, calls, caplog) -> None:
     assert call.data["media_content_id"] == "jazz"
 
 
+async def test_unavailable_member_is_dropped(hass, alexa, calls, caplog) -> None:
+    """Regression 1.2.0: an unavailable speaker must not stay stuck in a group.
+
+    HA skips entity services for unavailable entities, so unjoin could never
+    reach it and the exact match with an Alexa group (§5.1) was lost.
+    """
+    await _join(hass, T1, [T2, T3])
+    hass.states.async_set(alexa.mp("S3"), "unavailable")
+    await hass.async_block_till_done()
+    assert hass.states.get(T1).attributes["group_members"] == [T1, T2]
+    assert hass.states.get(T1).attributes["synchronized"] is True
+    assert "Speaker S3 is unavailable" in caplog.text
+
+
 async def test_superset_is_not_a_match(hass, alexa, calls) -> None:
     """§5.1: only an exact member set matches."""
     await _join(hass, T1, [T2, T3])

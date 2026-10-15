@@ -1,7 +1,7 @@
 # Alexa Speaker Groups
 
 [![HACS Custom](https://img.shields.io/badge/HACS-Custom-41BDF5.svg)](https://hacs.xyz/)
-![Version](https://img.shields.io/badge/version-1.1.0-blue)
+![Version](https://img.shields.io/badge/version-1.2.0-blue)
 ![Home Assistant](https://img.shields.io/badge/Home%20Assistant-2026.10%2B-03a9f4)
 
 🇮🇹 [Leggi in italiano](README.it.md)
@@ -52,6 +52,10 @@ For each selected Echo (e.g. *Alexa Kitchen*):
 | `media_player.alexa_kitchen_group` | groupable twin player |
 | `notify.alexa_kitchen_group_speak` | speak on the current group |
 | `notify.alexa_kitchen_group_announce` | announce (chime + text) on the current group |
+
+> ℹ️ Home Assistant prefixes entity ids with the area, so in a real installation the
+> ids look like `media_player.kitchen_alexa_kitchen_group`. Examples below use short
+> ids; search for `_group` in *Developer tools → States* to find yours.
 
 Extra attributes of the twin player: `synchronized` (true/false) and `alexa_group`
 (the Alexa group entity in use, if any).
@@ -146,6 +150,8 @@ entity: media_player.alexa_kitchen_group
   groups have no *Speak*.
 - Announcements need **text**: URLs and `media-source://` ids are rejected.
 - Play/Pause/Next/Previous appear only when Alexa reports them as available.
+- A speaker that becomes **unavailable** is removed from its group automatically
+  (Home Assistant cannot run unjoin on unavailable entities).
 
 ## Options
 *Settings → Devices & services → Alexa Speaker Groups → Configure*:
