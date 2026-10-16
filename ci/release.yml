@@ -1,0 +1,49 @@
+# Move to .github/workflows/release.yml (the publishing token lacks "workflow" scope).
+#
+# Creates the tag and the GitHub Release "X.Y.Z" automatically when a push to main
+# changes the version in manifest.json. HACS installs by release, so every version
+# bump needs one (spec §7). Uses the built-in GITHUB_TOKEN: no extra secret needed.
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - custom_components/alexa_speaker_groups/manifest.json
+  workflow_dispatch:
+
+permissions:
+  contents: write # create tag + release
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read version from manifest.json
+        id: version
+        run: |
+          version=$(jq -r '.version' custom_components/alexa_speaker_groups/manifest.json)
+          echo "version=${version}" >> "$GITHUB_OUTPUT"
+
+      - name: Check whether the release already exists
+        id: exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "${{ steps.version.outputs.version }}" >/dev/null 2>&1; then
+            echo "exists=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "exists=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create release (tag = manifest version, notes = commit message)
+        if: steps.exists.outputs.exists == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ steps.version.outputs.version }}" \
+            --target "${{ github.sha }}" \
+            --title "${{ steps.version.outputs.version }}" \
+            --notes "$(git log -1 --pretty=%B)"

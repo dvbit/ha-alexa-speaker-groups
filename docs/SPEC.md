@@ -1,4 +1,4 @@
-# Alexa Speaker Groups v1.2.0 — Specification
+# Alexa Speaker Groups v1.3.0 — Specification
 
 Original consolidated requirement agreed before implementation. Section numbers
 (§) are referenced from the code comments. Clarifications added during
@@ -82,4 +82,6 @@ never tries to.
 
 ## 7. Packaging
 HACS, localization en/it/fr/es/de, README in English and Italian with examples, icon,
-this specification, CI workflows (hassfest, HACS, lint, tests).
+this specification, CI workflows (hassfest, HACS, lint, tests). **[impl 1.3.0]** A
+`release.yml` workflow publishes the GitHub Release `X.Y.Z` automatically when the
+manifest version changes on `main` (HACS installs by release).
